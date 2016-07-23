@@ -29,18 +29,11 @@ def print_all_results(newsList):
 
 def main():
 
-	#soup = get_page_text()
-	#############
-	#FOR TESTING PURPOSES, use file for storing local copy of soup
-	#############
-	
-	#parse command line argument
+	soup = get_page_text()
 	arg=None
 	
 	if(len(sys.argv)>1):
 		arg=sys.argv[1]
-	f=open('soup.txt')
-	soup=BeautifulSoup(str(f.read()),'lxml')
 	rows = soup.find("table").findAll('tr')
 	newsList=[]
 	

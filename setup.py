@@ -7,5 +7,8 @@ setup(
         author='Rameshwar Bhaskaran',
         author_email='rameshwar.zorro@gmail.com',
         license='MIT',
+        entry_points = {
+            'console_scripts':['cdcinfo=cdcinfo.cdcparser:main'],
+            },
         packages=['cdcinfo'],
         zip_safe=False)
