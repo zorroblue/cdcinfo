@@ -23,7 +23,6 @@ def get_page_text():
 def print_all_results(newsList):
 	i=0
 	for news in newsList:
-		#print news
 		print '\x1b[%sm %s \x1b[0m' %(colors[1],news)
 		i=i+1
 
@@ -34,12 +33,13 @@ def main():
 	
 	if(len(sys.argv)>1):
 		arg=sys.argv[1]
-	rows = soup.find("table").findAll('tr')
+        rows = soup.find("table").findAll('tr', {'class' : 'notice-rows'})
 	newsList=[]
 	
    	for row in rows[1:]:
 		rowList=row.findAll('td')
-		news=News(rowList[0].string,rowList[1].string,rowList[2].string,rowList[3].find("div",class_="noticeHeading").get("data-notif"),rowList[4].string)
+		#print rowList,"\n", len(rowList),"\n"
+                news=News(rowList[0].string,rowList[1].string,rowList[2].string,rowList[3].find("div",class_="noticeHeading").get("data-notif"),rowList[4].string)
 		newsList.append(news)
 	
 	if arg == '--all' or arg == None:
@@ -50,14 +50,12 @@ def main():
 			f=open('config.txt','r')
 		except:
 			print_all_results(newsList)
-			f.close()
 			f=open('config.txt','w')
 			f.write(datetime.datetime.now().strftime('%d-%m-%Y %H:%M'))
 			sys.exit()
 		data=f.read()
 		if(data is None or len(data)==0):
 			print_all_results(newsList)
-			f.close()
 			f=open('config.txt','w')
 			f.write(datetime.datetime.now().strftime('%d-%m-%Y %H:%M'))
 			sys.exit()

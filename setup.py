@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
         name='cdcinfo',
-        version='1.0',
+        version='2.0',
         url='http://github.com/zorroblue/cdcinfo',
         author='Rameshwar Bhaskaran',
         author_email='rameshwar.zorro@gmail.com',
